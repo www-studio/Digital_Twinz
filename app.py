@@ -202,8 +202,11 @@ pushover_url = "https://api.pushover.net/1/messages.json"
 
 #Create send_notification function
 def send_notification(message: str):
+    if pushover_user is None or pushover_token is None: #handling of missing pushover credentials and/or errors
+        return "Notifcation failed: Pushover not configured"
     hey = {"user": pushover_user, "token": pushover_token, "message": message}
     requests.post(pushover_url, data=hey)
+    return f"Notification sent: {message}" 
 
 # Describe Pushover as an LLM tool
 send_notification_function = {
@@ -253,9 +256,8 @@ def handle_tool_call(tool_calls):
 
         #Route to the appropriate function based on function_name
         if function_name == "send_notification":
-            send_notification(args["message"]) #--Actually send the notfication, i.e. call the tool
-            #print(f"Sent notfication: {args['message']}")
-            content = f"Notification sent: {args['message']}" 
+            content = send_notification(args["message"]) #--Actually send the notfication, i.e. call the tool
+            #print(f"Sent notfication: {args['message']}") 
         elif function_name == "dice_roll":
             content = f"Rolled: {dice_roll()}"
         #elif function_name == "insert_function_name_3":
@@ -352,5 +354,6 @@ def respond_ai(message, history):
 #-----------------------------------------------
 # Launch Gradio
 #-----------------------------------------------
+#gr.ChatInterface(fn=respond_ai).launch()
 demo = gr.ChatInterface(fn=respond_ai)
 demo.launch(server_name="0.0.0.0", server_port=int(os.environ.get("PORT", 7860)))
