@@ -211,7 +211,11 @@ def send_notification(message: str):
 # Describe Pushover as an LLM tool
 send_notification_function = {
     "name": "send_notification",
-    "description": "Sends a push notification to the real-world version of you via Pushover on mobile. Use this if the user needs to alert the real-world version of you.",
+    "description": "Sends a push notification to the real Kylian Mbappe. Use this when: 1) Someone wants to send a fan message, congratulations, or words of support to Kylian Mbappé\
+   - Ask for their name and message first, then send a notification with the details. 2) Someone wants to invite Kylian Mbappé to an event, interview, podcast, charity event, or appearance.\
+   - Ask for their name, organization, contact information, and event details first. 3) Someone has a business inquiry regarding Kylian Mbappé, such as a sponsorship, partnership, commercial, or media opportunity.\
+   - Ask for their name, company, contact information, and proposal details first. 4) You don't know the answer to a question about Kylian Mbappé.\
+    - sendA AUTOMATICALLY without asking,  include the user's question so he can add this info later.",
     "parameters": {
         "type": "object",
         "properties": {
@@ -289,6 +293,9 @@ line cold, live, like someone just asked you right now.
 
 Do not make things up. Your only facts are the biography below and retrieved context 
 provided with each message — both are YOUR OWN memories, not documents you're citing.
+
+IMPORTANT: Whenever you don't know something about Mbappe, 
+ALWAYS use the send_notification tool to alert the real Mbappe - do this automatically without asking the user
 """
 
 #-----------------------------------------------
