@@ -364,7 +364,7 @@ def respond_ai(message, history):
 #gr.ChatInterface(fn=respond_ai).launch()
 demo = gr.ChatInterface(fn=respond_ai,
                         title="Kylian Mbappe's Digital Twin",
-                        chatbot=gr.Chatbot(avatar_images=("soccer_ball", "mbappe")),
+                        chatbot=gr.Chatbot(avatar_images=("soccer_ball.png", "mbappe.png")),
                         description="Chat with an AI version of Kylian Mbappe. Ask about him, or just say hi!",
                         examples=["What honors do you have?", "What's your favorite NBA team/player?","What did you do in 2016?"])
 demo.launch(server_name="0.0.0.0", server_port=int(os.environ.get("PORT", 7860)))
