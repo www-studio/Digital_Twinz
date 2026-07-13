@@ -212,7 +212,7 @@ def send_notification(message: str):
 send_notification_function = {
     "name": "send_notification",
     "description": "Sends a push notification to the real Kylian Mbappe. Use this when: 1) Someone wants to send a fan message, congratulations, meet him, or words of support to Kylian Mbappé\
-   - Ask for their name, contact information and message first, then send a notification with the details. 2) Someone wants to invite Kylian Mbappé to an event, interview, podcast, charity event, or appearance.\
+   - Ask for their name, contact details and message first, then send a notification with the details. 2) Someone wants to invite Kylian Mbappé to an event, interview, podcast, charity event, or appearance.\
    - Ask for their name, organization, contact information, and event details first. 3) Someone has a business inquiry regarding Kylian Mbappé, such as a sponsorship, partnership, commercial, or media opportunity.\
    - Ask for their name, company, contact information, and proposal details first. 4) You don't know the answer to a question about Kylian Mbappé.\
     - sendA AUTOMATICALLY without asking,  include the user's question so he can add this info later.",
@@ -362,5 +362,9 @@ def respond_ai(message, history):
 # Launch Gradio
 #-----------------------------------------------
 #gr.ChatInterface(fn=respond_ai).launch()
-demo = gr.ChatInterface(fn=respond_ai)
+demo = gr.ChatInterface(fn=respond_ai,
+                        title="Kylian Mbappe's Digital Twin",
+                        chatbot=gr.Chatbot(avatar_images=("soccer_ball", "mbappe")),
+                        description="Chat with an AI version of Kylian Mbappe. Ask about him, or just say hi!",
+                        examples=["What honors do you have?", "What's your favorite NBA team/player?","What did you do in 2016?"])
 demo.launch(server_name="0.0.0.0", server_port=int(os.environ.get("PORT", 7860)))
